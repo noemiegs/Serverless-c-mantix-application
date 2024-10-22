@@ -1,0 +1,1 @@
+# Serverless-c-mantix-application
