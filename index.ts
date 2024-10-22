@@ -18,9 +18,12 @@ async function handler(_req: Request): Promise<Response> {
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
 
+  const url = new URL(_req.url);
+  const wordInput = url.pathname.split("/").pop();
+
   const similarityRequestBody = JSON.stringify({
-    word1: "centrale",
-    word2: "supelec",
+    word1: wordInput, 
+    word2: "supelec", 
   });
 
   const requestOptions = {
@@ -47,7 +50,6 @@ async function handler(_req: Request): Promise<Response> {
 
     const result = await response.json();
 
-    console.log(result);
     return new Response(JSON.stringify(result), {
       status: 200,
       headers: {
